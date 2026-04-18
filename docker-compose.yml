@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  service-registry:
+    build: ./service-registry
+    ports:
+      - "5003:5003"
+    environment:
+      - AUTH_SERVICE_URL=http://auth-service:5001
+      - NOTES_SERVICE_URL=http://notes-service:5002
+    networks:
+      - notes-network
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "5001:5001"
+    networks:
+      - notes-network
+    depends_on:
+      - service-registry
+
+  notes-service:
+    build: ./notes-service
+    ports:
+      - "5002:5002"
+    networks:
+      - notes-network
+    depends_on:
+      - service-registry
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "5000:5000"
+    environment:
+      - SERVICE_REGISTRY_URL=http://service-registry:5003/services
+    networks:
+      - notes-network
+    depends_on:
+      - service-registry
+      - auth-service
+      - notes-service
+
+networks:
+  notes-network:
+    driver: bridge

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CloudNotes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="align-items: flex-start; background: #f8fafc;">
+    <div class="dashboard-layout">
+        <header class="nav-header">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">CN</div>
+                <h2 style="font-weight: 800; letter-spacing: -0.5px;">CloudNotes</h2>
+            </div>
+            <button id="logout-btn" class="logout-btn">Sign Out</button>
+        </header>
+
+        <main class="main-content">
+            <aside class="note-creator">
+                <h3 style="margin-bottom: 1.5rem; font-weight: 700;">Create New Note</h3>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="note-title" placeholder="Meeting Notes...">
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <textarea id="note-content" style="height: 150px; resize: none;" placeholder="Start typing here..."></textarea>
+                </div>
+                <button id="add-note-btn">Save Note</button>
+            </aside>
+
+            <section>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="font-weight: 700; color: var(--text-main);">Your Recent Notes</h3>
+                    <span id="notes-count" style="font-size: 0.875rem; color: var(--text-muted); background: #e2e8f0; padding: 0.25rem 0.75rem; border-radius: 20px; font-weight: 600;">0 Notes</span>
+                </div>
+                <div id="notes-grid" class="notes-container">
+                    <!-- Notes will be loaded here -->
+                    <div class="skeleton" style="height: 180px;"></div>
+                    <div class="skeleton" style="height: 180px;"></div>
+                    <div class="skeleton" style="height: 180px;"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+    <script>
+        if (!localStorage.getItem('notes_token')) {
+            window.location.href = 'login.html';
+        } else {
+            loadNotes();
+        }
+    </script>
+</body>
+</html>
