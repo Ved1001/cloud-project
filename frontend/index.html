@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button id="theme-toggle" class="theme-toggle-btn">Magic!!!!</button>
+    <div class="container">
+
+        <!-- HOME SCREEN -->
+        <div id="home-screen" class="screen active">
+            <header>
+                <h1>Tic Tac Toe</h1>
+                <p class="subtitle">Select Game Mode</p>
+            </header>
+
+            <div class="menu-actions">
+                <button id="btn-pvp" class="primary-btn mode-select-btn" data-mode="pvp">Play vs Player</button>
+                <button id="btn-ai" class="primary-btn mode-select-btn" data-mode="ai">Play vs AI</button>
+            </div>
+
+            <!-- Setup Form -->
+            <div id="setup-form" class="setup-form hidden">
+                <h3 id="setup-title">Game Setup</h3>
+
+                <div class="input-group" id="group-p1">
+                    <label for="p1-name">Player 1 (X) Name:</label>
+                    <input type="text" id="p1-name" value="Player 1" />
+                </div>
+
+                <div class="input-group hidden" id="group-p2">
+                    <label for="p2-name">Player 2 (O) Name:</label>
+                    <input type="text" id="p2-name" value="Player 2" />
+                </div>
+
+                <div class="input-group hidden" id="group-diff">
+                    <label for="difficulty">Difficulty:</label>
+                    <select id="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <button id="start-btn" class="primary-btn start-btn">Start Game</button>
+            </div>
+        </div>
+
+        <!-- GAME SCREEN -->
+        <div id="game-screen" class="screen hidden">
+            <header>
+                <h1>Tic Tac Toe</h1>
+            </header>
+
+            <div class="scoreboard">
+                <div class="score-card x-card">
+                    <span id="score-name-x">Player 1 (X)</span>
+                    <strong id="score-val-x">0</strong>
+                </div>
+                <div class="score-card draw-card">
+                    <span>Draws</span>
+                    <strong id="score-val-draws">0</strong>
+                </div>
+                <div class="score-card o-card">
+                    <span id="score-name-o">Player 2 (O)</span>
+                    <strong id="score-val-o">0</strong>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <div class="status-panel">
+                    <h2 id="game-status">Player X's Turn</h2>
+                </div>
+            </div>
+
+            <div class="board-container">
+                <div id="board" class="board">
+                    <div class="cell" data-index="0"></div>
+                    <div class="cell" data-index="1"></div>
+                    <div class="cell" data-index="2"></div>
+                    <div class="cell" data-index="3"></div>
+                    <div class="cell" data-index="4"></div>
+                    <div class="cell" data-index="5"></div>
+                    <div class="cell" data-index="6"></div>
+                    <div class="cell" data-index="7"></div>
+                    <div class="cell" data-index="8"></div>
+                </div>
+            </div>
+
+            <div class="actions center-actions">
+                <button id="restart-btn" class="secondary-btn">Restart Game</button>
+                <button id="back-btn" class="secondary-btn">Back to Menu</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Loading Overlay for AI thinking -->
+    <div id="ai-loading" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>AI is thinking...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
