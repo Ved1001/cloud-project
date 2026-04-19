@@ -49,3 +49,4 @@ Inside the Docker network, services communicate using these internal URLs:
 - **Notes:** `http://notes-service:5002`
 
 The API Gateway is configured via environment variables in `docker-compose.yml` to find the Registry at `http://service-registry:5003/services`.
+"# cloud-project" 
